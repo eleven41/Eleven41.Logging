@@ -16,7 +16,7 @@ Various logging levels exist, including:
 * Error
 
 ## LICENSE
-[MIT License](https://github.com/eleven41/CloudWatchMonitor/blob/master/LICENSE.md)
+[MIT License](https://github.com/eleven41/Eleven41.Logging/blob/master/LICENSE.md)
 
 ## REQUIREMENTS
 
