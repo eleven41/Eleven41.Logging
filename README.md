@@ -4,7 +4,7 @@ Copyright (C) 2012, Eleven41 Software
 
 WHAT AM I?
 
-Eleven41.Logging is a general purpose logging system, capable of logging to many different outputs.
+Eleven41.Logging is a general purpose logging framework, capable of logging to many different outputs.
 Those include:
 * Console
 * File
