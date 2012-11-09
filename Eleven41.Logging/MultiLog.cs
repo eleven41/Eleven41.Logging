@@ -16,9 +16,12 @@ namespace Eleven41.Logging
 		/// <summary>
 		/// Constucts a MultiLog object.
 		/// </summary>
-		public MultiLog()
+		public MultiLog(params ILog[] args)
 		{
 			_logs = new List<ILog>();
+
+			foreach (var arg in args)
+				_logs.Add(arg);
 		}
 
 		/// <summary>
