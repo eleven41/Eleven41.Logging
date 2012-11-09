@@ -6,7 +6,7 @@ namespace Eleven41.Logging
 	/// <summary>
 	/// Logs messages to a file.
 	/// </summary>
-	public class FileLog : TextWriterLog
+	public class FileLog : TextWriterLog, IDisposable
 	{
 		/// <summary>
 		/// Constructs a FileLog object.
@@ -52,5 +52,14 @@ namespace Eleven41.Logging
 			FileStream stream = new FileStream(sFile, FileMode.Create, FileAccess.Write);
 			Writer = new StreamWriter(stream);
 		}
+
+		#region IDisposable Members
+
+		public void Dispose()
+		{
+			Writer.Close();
+		}
+
+		#endregion
 	}
 }
