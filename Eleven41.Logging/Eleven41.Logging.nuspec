@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Eleven41.Logging</id>
+    <version>1.0.0</version>
+    <authors>Eleven41 Software</authors>
+    <owners>Eleven41 Software</owners>
+    <licenseUrl>https://github.com/eleven41/Eleven41.Logging/blob/master/LICENSE.md</licenseUrl>
+    <projectUrl>https://github.com/eleven41/Eleven41.Logging</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Eleven41.Logging is a general purpose logging framework, capable of logging to many different outputs. Those include console, file, Windows event Log, multiple outputs. Various logging levels exist, including diagnostic, info, warning, and error.</description>
+    <releaseNotes>Initial Release.</releaseNotes>
+    <copyright>Copyright (C) 2013, Eleven41 Software</copyright>
+  </metadata>
+</package>
