@@ -6,6 +6,6 @@ namespace Eleven41.Logging
 {
 	public interface ITextWriterFormatter
 	{
-		void WriteText(System.IO.TextWriter writer, string level, DateTime dateTime, string text);
+		void WriteText(System.IO.TextWriter writer, LogLevels level, DateTime dateTime, string text);
 	}
 }

@@ -124,32 +124,27 @@ namespace Eleven41.Logging
 		/// <param name="sMsg">Message to log.</param>
 		public void Log(DateTime dt, LogLevels level, string sMsg)
 		{
-			string sLevel;
 			switch (level)
 			{
 				case LogLevels.Info:
 				default:
 					if (!LogInfos)
 						return;
-					sLevel = "I";
 					break;
 
 				case LogLevels.Diagnostic:
 					if (!LogDiagnostics)
 						return;
-					sLevel = "D";
 					break;
 
 				case LogLevels.Warning:
 					if (!LogWarnings)
 						return;
-					sLevel = "W";
 					break;
 
 				case LogLevels.Error:
 					if (!LogErrors)
 						return;
-					sLevel = "E";
 					break;
 			}
 
@@ -157,7 +152,7 @@ namespace Eleven41.Logging
 			string[] lines = System.Text.RegularExpressions.Regex.Split(sMsg, "\r\n|\r|\n");
 			foreach (var line in lines)
 			{
-				this.TextWriterFormatter.WriteText(_writer, sLevel, dt, line);
+				this.TextWriterFormatter.WriteText(_writer, level, dt, line);
 			}
 			_writer.Flush();
 		}
