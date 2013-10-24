@@ -1,9 +1,9 @@
-﻿using Eleven41.Logging;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Eleven41.Logging;
 
 namespace UtcSample
 {
@@ -13,7 +13,7 @@ namespace UtcSample
 		{
 			MyProcess(new ConsoleLog()
 				{
-					DateTimeProvider = new UtcDateTimeFormatter()
+					DateTimeProvider = new Eleven41.Logging.DateTimeProviders.UtcDateTimeFormatter()
 				});
 		}
 

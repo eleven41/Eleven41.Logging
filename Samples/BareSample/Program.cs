@@ -1,9 +1,9 @@
-﻿using Eleven41.Logging;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Eleven41.Logging;
 
 namespace BareSample
 {
@@ -13,7 +13,7 @@ namespace BareSample
 		{
 			MyProcess(new ConsoleLog()
 				{
-					TextWriterFormatter = new BareTextWriterFormatter()
+					TextWriterFormatter = new Eleven41.Logging.TextWriterFormatters.BareTextWriterFormatter()
 				});
 		}
 

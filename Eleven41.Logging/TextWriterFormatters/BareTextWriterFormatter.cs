@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Eleven41.Logging
+namespace Eleven41.Logging.TextWriterFormatters
 {
 	public class BareTextWriterFormatter : ITextWriterFormatter
 	{

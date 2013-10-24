@@ -17,8 +17,8 @@ namespace Eleven41.Logging
 		public TextWriterLog()
 		{
 			_writer = null;
-			this.DateTimeProvider = new DefaultDateTimeProvider();
-			this.TextWriterFormatter = new DefaultTextWriterFormatter();
+			this.DateTimeProvider = new DateTimeProviders.DefaultDateTimeProvider();
+			this.TextWriterFormatter = new TextWriterFormatters.DefaultTextWriterFormatter();
 		}
 
 		/// <summary>
@@ -27,8 +27,8 @@ namespace Eleven41.Logging
 		public TextWriterLog(TextWriter writer)
 		{
 			_writer = writer;
-			this.DateTimeProvider = new DefaultDateTimeProvider();
-			this.TextWriterFormatter = new DefaultTextWriterFormatter();
+			this.DateTimeProvider = new DateTimeProviders.DefaultDateTimeProvider();
+			this.TextWriterFormatter = new TextWriterFormatters.DefaultTextWriterFormatter();
 		}
 
 		/// <summary>
@@ -38,8 +38,8 @@ namespace Eleven41.Logging
 			: base(args)
 		{
 			_writer = writer;
-			this.DateTimeProvider = new DefaultDateTimeProvider();
-			this.TextWriterFormatter = new DefaultTextWriterFormatter();
+			this.DateTimeProvider = new DateTimeProviders.DefaultDateTimeProvider();
+			this.TextWriterFormatter = new TextWriterFormatters.DefaultTextWriterFormatter();
 		}
 
 		/// <summary>
@@ -49,8 +49,8 @@ namespace Eleven41.Logging
 			: base(bLogInfos, bLogDiags, bLogWarnings, bLogErrors)
 		{
 			_writer = writer;
-			this.DateTimeProvider = new DefaultDateTimeProvider();
-			this.TextWriterFormatter = new DefaultTextWriterFormatter();
+			this.DateTimeProvider = new DateTimeProviders.DefaultDateTimeProvider();
+			this.TextWriterFormatter = new TextWriterFormatters.DefaultTextWriterFormatter();
 		}
 
 		/// <summary>

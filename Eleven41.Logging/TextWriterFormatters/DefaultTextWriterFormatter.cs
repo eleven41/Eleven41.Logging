@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 
-namespace Eleven41.Logging
+namespace Eleven41.Logging.TextWriterFormatters
 {
 	public class DefaultTextWriterFormatter : ITextWriterFormatter
 	{
