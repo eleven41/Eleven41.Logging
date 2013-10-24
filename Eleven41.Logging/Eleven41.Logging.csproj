@@ -37,17 +37,24 @@
     <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BareTextWriterFormatter.cs" />
     <Compile Include="ConsoleLog.cs" />
     <Compile Include="DailyFileLog.cs" />
+    <Compile Include="DefaultDateTimeProvider.cs" />
+    <Compile Include="DefaultTextWriterFormatter.cs" />
     <Compile Include="EventLogLog.cs" />
     <Compile Include="FileLog.cs" />
+    <Compile Include="IDateTimeProvider.cs" />
     <Compile Include="ILog.cs" />
+    <Compile Include="ITextWriterFormatter.cs" />
     <Compile Include="LogBase.cs" />
+    <Compile Include="LogLevels.cs" />
     <Compile Include="MultiLog.cs" />
     <Compile Include="NullLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TextWriterLog.cs" />
     <Compile Include="ThreadedLog.cs" />
+    <Compile Include="UtcDateTimeFormatter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Eleven41.Logging.nuspec" />

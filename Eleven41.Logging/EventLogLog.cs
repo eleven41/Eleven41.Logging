@@ -55,10 +55,10 @@ namespace Eleven41.Logging
 		/// Logs a message to the event log.
 		/// </summary>
 		/// <param name="level">Level of the message</param>
-		/// <param name="sMsg">Message to log.</param>
-		public override void Log(LogLevels level, string sMsg, params Object[] args)
+		/// <param name="sFormat">Message to log.</param>
+		public override void Log(LogLevels level, string sFormat, params Object[] args)
 		{
-			string sFinalMsg = String.Format(sMsg, args);
+			string sFinalMsg = String.Format(sFormat, args);
 			switch (level)
 			{
 				case LogLevels.Info:

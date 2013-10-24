@@ -69,8 +69,8 @@ namespace Eleven41.Logging
 		/// Logs a message.
 		/// </summary>
 		/// <param name="level">Level of the message.</param>
-		/// <param name="sMsg">Message to log.</param>
-		public override void Log(LogLevels level, string sMsg, params Object[] args)
+		/// <param name="sFormat">Message to log.</param>
+		public override void Log(LogLevels level, string sFormat, params Object[] args)
 		{
 			lock (_writerLock)
 			{
@@ -91,7 +91,7 @@ namespace Eleven41.Logging
 			}
 
 			// Write to the log
-			base.Log(level, sMsg, args);
+			base.Log(level, sFormat, args);
 		}
 
 		#endregion

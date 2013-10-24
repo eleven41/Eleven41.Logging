@@ -40,13 +40,13 @@ namespace Eleven41.Logging
 		/// Log the message to each of the logs in the list.
 		/// </summary>
 		/// <param name="level">Level of the message.</param>
-		/// <param name="sMsg">Message to send.</param>
-		public virtual void Log(LogLevels level, string sMsg, params Object[] args)
+		/// <param name="sFormat">Message to send.</param>
+		public virtual void Log(LogLevels level, string sFormat, params Object[] args)
 		{
 			// Send the message to each log
 			foreach(ILog log in _logs)
 			{
-				log.Log(level, sMsg, args);
+				log.Log(level, sFormat, args);
 			}
 		}
 

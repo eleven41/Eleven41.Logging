@@ -17,6 +17,8 @@ namespace Eleven41.Logging
 		public TextWriterLog()
 		{
 			_writer = null;
+			this.DateTimeProvider = new DefaultDateTimeProvider();
+			this.TextWriterFormatter = new DefaultTextWriterFormatter();
 		}
 
 		/// <summary>
@@ -25,6 +27,8 @@ namespace Eleven41.Logging
 		public TextWriterLog(TextWriter writer)
 		{
 			_writer = writer;
+			this.DateTimeProvider = new DefaultDateTimeProvider();
+			this.TextWriterFormatter = new DefaultTextWriterFormatter();
 		}
 
 		/// <summary>
@@ -34,6 +38,8 @@ namespace Eleven41.Logging
 			: base(args)
 		{
 			_writer = writer;
+			this.DateTimeProvider = new DefaultDateTimeProvider();
+			this.TextWriterFormatter = new DefaultTextWriterFormatter();
 		}
 
 		/// <summary>
@@ -43,9 +49,9 @@ namespace Eleven41.Logging
 			: base(bLogInfos, bLogDiags, bLogWarnings, bLogErrors)
 		{
 			_writer = writer;
+			this.DateTimeProvider = new DefaultDateTimeProvider();
+			this.TextWriterFormatter = new DefaultTextWriterFormatter();
 		}
-
-		public bool IsBare { get; set; }
 
 		/// <summary>
 		/// The writer for the object.
@@ -69,19 +75,39 @@ namespace Eleven41.Logging
 		/// Logs a message to the TextWriter.
 		/// </summary>
 		/// <param name="level">Level of the message.</param>
-		/// <param name="sMsg">Message to log.</param>
-		public override void Log(LogLevels level, string sMsg, params Object[] args)
+		/// <param name="sFormat">Message to log.</param>
+		public override void Log(LogLevels level, string sFormat, params Object[] args)
 		{
-			Log(GetDateTime(), level, String.Format(sMsg, args));
+			Log(_dateTimeProvider.GetCurrentDateTime(), level, String.Format(sFormat, args));
 		}
 
 		#endregion
 
-		protected virtual DateTime GetDateTime()
+		IDateTimeProvider _dateTimeProvider;
+
+		public IDateTimeProvider DateTimeProvider 
 		{
-			return DateTime.Now;
+			get
+			{
+				return _dateTimeProvider;
+			}
+			set
+			{
+				if (value == null)
+					throw new ArgumentNullException();
+				_dateTimeProvider = value;
+			}
 		}
 
+		private ITextWriterFormatter _textWriterFormatter;
+
+		public ITextWriterFormatter TextWriterFormatter
+		{
+			get { return _textWriterFormatter; }
+			set { _textWriterFormatter = value; }
+		}
+		
+		
 		/// <summary>
 		/// Logs a message to the TextWriter.
 		/// </summary>
@@ -123,16 +149,7 @@ namespace Eleven41.Logging
 			string[] lines = System.Text.RegularExpressions.Regex.Split(sMsg, "\r\n|\r|\n");
 			foreach (var line in lines)
 			{
-				if (!IsBare)
-				{
-					_writer.WriteLine("{0}:{1} {2} [{4}]: {3}", sLevel,
-						dt.ToShortDateString(), dt.ToLongTimeString(),
-						line, Thread.CurrentThread.GetHashCode());
-				}
-				else
-				{
-					_writer.WriteLine("{0}", line);
-				}
+				this.TextWriterFormatter.WriteText(_writer, sLevel, dt, line);
 			}
 			_writer.Flush();
 		}
