@@ -78,7 +78,7 @@ namespace Eleven41.Logging
 		/// <param name="sFormat">Message to log.</param>
 		public override void Log(LogLevels level, string sFormat, params Object[] args)
 		{
-			Log(_dateTimeProvider.GetCurrentDateTime(), level, String.Format(sFormat, args));
+			Log(this.DateTimeProvider.GetCurrentDateTime(), level, String.Format(sFormat, args));
 		}
 
 		#endregion
@@ -103,8 +103,16 @@ namespace Eleven41.Logging
 
 		public ITextWriterFormatter TextWriterFormatter
 		{
-			get { return _textWriterFormatter; }
-			set { _textWriterFormatter = value; }
+			get
+			{
+				return _textWriterFormatter;
+			}
+			set
+			{
+				if (value == null)
+					throw new ArgumentNullException();
+				_textWriterFormatter = value;
+			}
 		}
 		
 		
