@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Eleven41.Logging")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Eleven41 Software")]
+[assembly: AssemblyCompany("Eleven41 Software Inc.")]
 [assembly: AssemblyProduct("Eleven41.Logging")]
-[assembly: AssemblyCopyright("Copyright © 2013, Eleven41 Software")]
+[assembly: AssemblyCopyright("Copyright © 2014, Eleven41 Software Inc.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.1.0.0")]
-[assembly: AssemblyFileVersion("1.1.0.0")]
+[assembly: AssemblyVersion("1.1.1.0")]
+[assembly: AssemblyFileVersion("1.1.1.0")]
