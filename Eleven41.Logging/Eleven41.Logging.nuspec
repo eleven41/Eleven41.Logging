@@ -9,7 +9,7 @@
     <projectUrl>https://github.com/eleven41/Eleven41.Logging</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Eleven41.Logging is a general purpose logging framework, capable of logging to many different outputs. Those include console, file, Windows event Log, multiple outputs. Various logging levels exist, including diagnostic, info, warning, and error.</description>
-    <releaseNotes>Addition of DateTimeProvider and TextWriterFormatter.</releaseNotes>
+    <releaseNotes>Renamed UtcDateTimeFormatter to UtcDateTimeProvider.</releaseNotes>
     <copyright>Copyright (C) 2014, Eleven41 Software Inc.</copyright>
 		<tags>logging</tags>
   </metadata>
