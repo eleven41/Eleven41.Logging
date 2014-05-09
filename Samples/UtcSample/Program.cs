@@ -13,7 +13,7 @@ namespace UtcSample
 		{
 			MyProcess(new ConsoleLog()
 				{
-					DateTimeProvider = new Eleven41.Logging.DateTimeProviders.UtcDateTimeFormatter()
+					DateTimeProvider = new Eleven41.Logging.DateTimeProviders.UtcDateTimeProvider()
 				});
 		}
 

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Eleven41.Logging.DateTimeProviders
 {
-	public class UtcDateTimeFormatter : IDateTimeProvider
+	public class UtcDateTimeProvider : IDateTimeProvider
 	{
 		public DateTime GetCurrentDateTime()
 		{
