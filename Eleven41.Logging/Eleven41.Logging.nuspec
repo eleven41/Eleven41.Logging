@@ -2,14 +2,14 @@
 <package >
   <metadata>
     <id>Eleven41.Logging</id>
-    <version>1.1.1</version>
+    <version>1.2.0</version>
     <authors>Eleven41 Software</authors>
     <owners>Eleven41 Software</owners>
     <licenseUrl>https://github.com/eleven41/Eleven41.Logging/blob/master/LICENSE.md</licenseUrl>
     <projectUrl>https://github.com/eleven41/Eleven41.Logging</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Eleven41.Logging is a general purpose logging framework, capable of logging to many different outputs. Those include console, file, Windows event Log, multiple outputs. Various logging levels exist, including diagnostic, info, warning, and error.</description>
-    <releaseNotes>Renamed UtcDateTimeFormatter to UtcDateTimeProvider.</releaseNotes>
+    <releaseNotes>Added logging messages with data.</releaseNotes>
     <copyright>Copyright (C) 2014, Eleven41 Software Inc.</copyright>
 		<tags>logging</tags>
   </metadata>

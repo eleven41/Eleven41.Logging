@@ -120,8 +120,16 @@ namespace Eleven41.Logging
 		/// </summary>
 		/// <param name="level">Level of the message.</param>
 		/// <param name="sMsg">Message to log.</param>
-		public abstract void Log(LogLevels level, string sMsg, params Object[] args);
+		public abstract void Log(LogLevels level, string sFormat, params Object[] args);
+
+		public virtual void Log(LogLevels level, System.Collections.Generic.Dictionary<string, object> data, string sFormat, params object[] args)
+		{
+			// These log types do not support extra data,
+			// so simply call the basic log function
+			Log(level, sFormat, args);
+		}
 		
 		#endregion
+
 	}
 }

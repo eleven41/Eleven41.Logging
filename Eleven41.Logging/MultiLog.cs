@@ -50,6 +50,15 @@ namespace Eleven41.Logging
 			}
 		}
 
+		public void Log(LogLevels level, Dictionary<string, object> data, string sFormat, params object[] args)
+		{
+			// Send the message to each log
+			foreach (ILog log in _logs)
+			{
+				log.Log(level, data, sFormat, args);
+			}
+		}
+
 		#endregion
 	}
 }

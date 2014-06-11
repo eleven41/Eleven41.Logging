@@ -1,6 +1,6 @@
 # Eleven41.Logging
 
-Copyright (C) 2013, Eleven41 Software
+Copyright (C) 2014, Eleven41 Software Inc.
 
 Eleven41.Logging is a general purpose logging framework, capable of logging to many different outputs.
 Those include:
@@ -26,7 +26,7 @@ Various logging levels exist, including:
 
 ## REQUIREMENTS
 
-* Visual Studio 2012
+* Visual Studio 2013
 
 ## Sample Code
 

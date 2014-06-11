@@ -11,6 +11,7 @@ namespace Eleven41.Logging
 	{
 		private ILog _log = null;
 		private Queue<LogRecord> _records = new Queue<LogRecord>();
+		private Thread _thread;
 
 		/// <summary>
 		/// Constructs a ThreadedLog object.
@@ -21,8 +22,8 @@ namespace Eleven41.Logging
 			_log = log;
 
 			// Start the thread
-			Thread t = new Thread(new ThreadStart(Run));
-			t.Start();
+			_thread = new Thread(new ThreadStart(Run));
+			_thread.Start();
 		}
 
 		#region ILog Members
@@ -31,11 +32,18 @@ namespace Eleven41.Logging
 		/// Logs a message.
 		/// </summary>
 		/// <param name="level">Log level of the message.</param>
-		/// <param name="sMsg">Message to log.</param>
-		public void Log(LogLevels level, string sMsg, params Object[] args)
+		/// <param name="sFormat">Format of the message to log.</param>
+		/// <param name="args">Optional format arguments.</param>
+		public void Log(LogLevels level, string sFormat, params Object[] args)
 		{
-			LogRecord record = new LogRecord(level, sMsg, args);
-			lock(this)
+			// Call the data version with null data
+			Log(level, sFormat, null, args);
+		}
+
+		public void Log(LogLevels level, Dictionary<string, object> data, string sFormat, params object[] args)
+		{
+			LogRecord record = new LogRecord(level, data, sFormat, args);
+			lock (this)
 			{
 				_records.Enqueue(record);
 			}
@@ -53,15 +61,17 @@ namespace Eleven41.Logging
 			private LogLevels _Level;
 			private string _sMsg;
 			private Object[] _args;
+			private Dictionary<string, object> _data;
 
 			/// <summary>
 			/// Constructs a LogRecord object.
 			/// </summary>
 			/// <param name="level">Log level of the message.</param>
 			/// <param name="sMsg">Message to be logged.</param>
-			public LogRecord(LogLevels level, string sMsg, Object[] args)
+			public LogRecord(LogLevels level, Dictionary<string, object> data, string sMsg, Object[] args)
 			{
 				_Level = level;
+				_data = data;
 				_sMsg = sMsg;
 				_args = args;
 			}
@@ -78,7 +88,7 @@ namespace Eleven41.Logging
 					return;
 
 				// Log using our information
-				log.Log(_Level, _sMsg, _args);
+				log.Log(_Level, _data, _sMsg, _args);
 			}
 		}
 
@@ -90,6 +100,15 @@ namespace Eleven41.Logging
 		public void Stop()
 		{
 			_evStop.Set();
+		}
+
+		/// <summary>
+		/// Stops the thread and waits for it to complete.
+		/// </summary>
+		public void StopAndWait()
+		{
+			_evStop.Set();
+			_thread.Join();
 		}
 
 		private void Run()

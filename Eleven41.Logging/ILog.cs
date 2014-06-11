@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Eleven41.Logging
 {
@@ -14,5 +15,14 @@ namespace Eleven41.Logging
 		/// <param name="sFormat">Message format to send.</param>
 		/// <param name="args">Message arguments.</param>
 		void Log(LogLevels level, string sFormat, params Object[] args);
+
+		/// <summary>
+		/// Sends a message to the log, including extra data (if supported).
+		/// </summary>
+		/// <param name="level">Level of the message.</param>
+		/// <param name="data">Data to include with the message.</param>
+		/// <param name="sFormat">Message format to send.</param>
+		/// <param name="args">Message arguments.</param>
+		void Log(LogLevels level, Dictionary<string, object> data, string sFormat, params Object[] args);
 	}
 }
