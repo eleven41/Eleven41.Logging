@@ -13,5 +13,13 @@ namespace Eleven41.Logging
 		public void Log(LogLevels level, Dictionary<string, object> data, string sFormat, params object[] args)
 		{
 		}
+
+		public void Log(DateTime date, LogLevels level, string sFormat, params object[] args)
+		{
+		}
+
+		public void Log(DateTime date, LogLevels level, Dictionary<string, object> data, string sFormat, params object[] args)
+		{
+		}
 	}
 }

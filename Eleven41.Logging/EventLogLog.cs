@@ -81,6 +81,24 @@ namespace Eleven41.Logging
 			}
 		}
 
+		public override void Log(LogLevels level, System.Collections.Generic.Dictionary<string, object> data, string sFormat, params object[] args)
+		{
+			// We don't support data, so call the non-data version
+			Log(level, sFormat, args);
+		}
+
+		public override void Log(DateTime date, LogLevels level, string sFormat, params object[] args)
+		{
+			// We don't support preset dates, so call the non-date version
+			Log(level, sFormat, args);
+		}
+
+		public override void Log(DateTime date, LogLevels level, System.Collections.Generic.Dictionary<string, object> data, string sFormat, params object[] args)
+		{
+			// We don't support preset dates or data, so call the non-date, non-data version
+			Log(level, sFormat, args);
+		}
+
 		#endregion
 	}
 }

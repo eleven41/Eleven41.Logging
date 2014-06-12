@@ -36,13 +36,34 @@ namespace Eleven41.Logging
 		/// <param name="args">Optional format arguments.</param>
 		public void Log(LogLevels level, string sFormat, params Object[] args)
 		{
-			// Call the data version with null data
-			Log(level, sFormat, null, args);
+			LogRecord record = new LogRecord(null, level, null, sFormat, args);
+			lock (this)
+			{
+				_records.Enqueue(record);
+			}
 		}
 
 		public void Log(LogLevels level, Dictionary<string, object> data, string sFormat, params object[] args)
 		{
-			LogRecord record = new LogRecord(level, data, sFormat, args);
+			LogRecord record = new LogRecord(null, level, data, sFormat, args);
+			lock (this)
+			{
+				_records.Enqueue(record);
+			}
+		}
+
+		public void Log(DateTime date, LogLevels level, string sFormat, params object[] args)
+		{
+			LogRecord record = new LogRecord(date, level, null, sFormat, args);
+			lock (this)
+			{
+				_records.Enqueue(record);
+			}
+		}
+
+		public void Log(DateTime date, LogLevels level, Dictionary<string, object> data, string sFormat, params object[] args)
+		{
+			LogRecord record = new LogRecord(date, level, data, sFormat, args);
 			lock (this)
 			{
 				_records.Enqueue(record);
@@ -56,10 +77,9 @@ namespace Eleven41.Logging
 		/// </summary>
 		private class LogRecord
 		{
-			private static TimeSpan _OldSpan = new TimeSpan(0, 5, 0);
-			private DateTime _DateTime = DateTime.Now;
-			private LogLevels _Level;
-			private string _sMsg;
+			private DateTime? _date;
+			private LogLevels _level;
+			private string _messageFormat;
 			private Object[] _args;
 			private Dictionary<string, object> _data;
 
@@ -67,12 +87,13 @@ namespace Eleven41.Logging
 			/// Constructs a LogRecord object.
 			/// </summary>
 			/// <param name="level">Log level of the message.</param>
-			/// <param name="sMsg">Message to be logged.</param>
-			public LogRecord(LogLevels level, Dictionary<string, object> data, string sMsg, Object[] args)
+			/// <param name="messageFormat">Message to be logged.</param>
+			public LogRecord(DateTime? date, LogLevels level, Dictionary<string, object> data, string messageFormat, Object[] args)
 			{
-				_Level = level;
+				_date = date;
+				_level = level;
 				_data = data;
-				_sMsg = sMsg;
+				_messageFormat = messageFormat;
 				_args = args;
 			}
 
@@ -82,13 +103,11 @@ namespace Eleven41.Logging
 			/// <param name="log"></param>
 			public void Log(ILog log)
 			{
-				// If the item is too old, then forget about
-				// trying to log it.
-				if (DateTime.Now.Subtract(_DateTime) > _OldSpan)
-					return;
-
 				// Log using our information
-				log.Log(_Level, _data, _sMsg, _args);
+				if (_date.HasValue)
+					log.Log(_date.Value, _level, _data, _messageFormat, _args);
+				else
+					log.Log(_level, _data, _messageFormat, _args);
 			}
 		}
 

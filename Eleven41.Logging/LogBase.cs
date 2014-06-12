@@ -113,23 +113,12 @@ namespace Eleven41.Logging
 			set { _bLogErrors = value; }
 		}
 
-		#region ILog Members
-
-		/// <summary>
-		/// Log a message.
-		/// </summary>
-		/// <param name="level">Level of the message.</param>
-		/// <param name="sMsg">Message to log.</param>
 		public abstract void Log(LogLevels level, string sFormat, params Object[] args);
 
-		public virtual void Log(LogLevels level, System.Collections.Generic.Dictionary<string, object> data, string sFormat, params object[] args)
-		{
-			// These log types do not support extra data,
-			// so simply call the basic log function
-			Log(level, sFormat, args);
-		}
+		public abstract void Log(LogLevels level, System.Collections.Generic.Dictionary<string, object> data, string sFormat, params object[] args);
 		
-		#endregion
-
+		public abstract void Log(DateTime date, LogLevels level, string sFormat, params object[] args);
+		
+		public abstract void Log(DateTime date, LogLevels level, System.Collections.Generic.Dictionary<string, object> data, string sFormat, params object[] args);
 	}
 }

@@ -41,6 +41,12 @@ namespace Eleven41.Logging
 			_log.Log(level, _data, sFormat, args);
 		}
 
+		public void Log(DateTime date, LogLevels level, string sFormat, params object[] args)
+		{
+			// Pass the message on including our extra data
+			_log.Log(date, level, _data, sFormat, args);
+		}
+
 		public void Log(LogLevels level, Dictionary<string, object> messageData, string sFormat, params object[] args)
 		{
 			// Start with our seed data
@@ -54,6 +60,21 @@ namespace Eleven41.Logging
 			}
 
 			_log.Log(level, data, sFormat, args);
+		}
+
+		public void Log(DateTime date, LogLevels level, Dictionary<string, object> messageData, string sFormat, params object[] args)
+		{
+			// Start with our seed data
+			Dictionary<string, object> data = new Dictionary<string, object>(_data);
+
+			// Add the message data
+			if (messageData != null)
+			{
+				foreach (var kvp in messageData)
+					data[kvp.Key] = kvp.Value;
+			}
+
+			_log.Log(date, level, data, sFormat, args);
 		}
 	}
 }

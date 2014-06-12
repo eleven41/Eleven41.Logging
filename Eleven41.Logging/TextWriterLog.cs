@@ -81,6 +81,21 @@ namespace Eleven41.Logging
 			Log(this.DateTimeProvider.GetCurrentDateTime(), level, String.Format(sFormat, args));
 		}
 
+		public override void Log(LogLevels level, System.Collections.Generic.Dictionary<string, object> data, string sFormat, params object[] args)
+		{
+			Log(this.DateTimeProvider.GetCurrentDateTime(), level, String.Format(sFormat, args));
+		}
+
+		public override void Log(DateTime date, LogLevels level, string sFormat, params object[] args)
+		{
+			Log(date, level, String.Format(sFormat, args));
+		}
+
+		public override void Log(DateTime date, LogLevels level, System.Collections.Generic.Dictionary<string, object> data, string sFormat, params object[] args)
+		{
+			Log(date, level, String.Format(sFormat, args));
+		}
+
 		#endregion
 
 		IDateTimeProvider _dateTimeProvider;

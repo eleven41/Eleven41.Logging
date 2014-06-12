@@ -50,6 +50,15 @@ namespace Eleven41.Logging
 			}
 		}
 
+		public void Log(DateTime date, LogLevels level, string sFormat, params object[] args)
+		{
+			// Send the message to each log
+			foreach (ILog log in _logs)
+			{
+				log.Log(date, level, sFormat, args);
+			}
+		}
+
 		public void Log(LogLevels level, Dictionary<string, object> data, string sFormat, params object[] args)
 		{
 			// Send the message to each log
@@ -59,6 +68,16 @@ namespace Eleven41.Logging
 			}
 		}
 
+		public void Log(DateTime date, LogLevels level, Dictionary<string, object> data, string sFormat, params object[] args)
+		{
+			// Send the message to each log
+			foreach (ILog log in _logs)
+			{
+				log.Log(date, level, data, sFormat, args);
+			}
+		}
+
 		#endregion
+
 	}
 }
